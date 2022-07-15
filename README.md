@@ -14,7 +14,7 @@ As employees moved up through the ranks and recieved promotions throughout the y
 
 Using the DISTINCT ON joins query I was able to get the [Unique_titles.csv](Data/unique_titles.csv). This will only return the latest title for each employee. 74,258 employees fit this criteria. This is a huge number of potentital employees to backfill.
 
-The next query counts the number of roles by title, which could help HR and managers understand which roles will be most impacted by the retirees. [Retiring_titles.csv](Data/retiring_titles.csv). The company will want to prioritized Senior Enigneer and Senior Staff roles as these areas will feel the largest impact (70% of all retiring employees) of the upcoming retirements:
+The next query counts the number of roles by title, which could help HR and managers understand which roles will be most impacted by the retirees. [Retiring_titles.csv](Data/retiring_titles.csv). The company will want to prioritize Senior Enigneer and Senior Staff roles as these areas will feel the largest impact (70% of retiring employees):
  - 25,916	Senior Engineer
  - 24,926	Senior Staff
  - 9,285	Engineer
@@ -24,11 +24,9 @@ The next query counts the number of roles by title, which could help HR and mana
  - 2	Manager
 
 ### Employees Eligible for the Mentorship Program
-The Mentorship-eligibility query joined on the primary employee number key, combined first name, last name, birth date, and employement dates, and titles into a new table based on birth date criteria in 1965. (Data/mentorship_eligibility.csv)
+The Mentorship-eligibility query joined on the primary employee number key, combined first name, last name, birth date, and employement dates, and titles into a new table based on birth date criteria in 1965. Based on [the mentorship eligibility output](Data/mentorship_eligibility.csv), 1,549 employees are eligible for the mentorship program.
 
-1,549 employees are eligible for the mentorship program
-
-[Code](Queries/Employee_Database_challenge.sql)
+The full query [code is linked here for reference](Queries/Employee_Database_challenge.sql).
 
 ## Summary 
 The company will need to fill 74,258 roles. While there are some qualified, retirement-ready employees in the departments to mentor the next generation of Pewlett Hackard employees, it will not be enough.
