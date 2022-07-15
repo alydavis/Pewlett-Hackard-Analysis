@@ -1,38 +1,37 @@
 # Pewlett-Hackard-Analysis
 
 ## Overview
-Using a fictional company's employee data, this analysis helps the company plan for retiring employees and a plan for elgibility of a proposed mentorship program. There are an expected (X) number of employees eligible for retirement in the upcoming years - a [%] portion of the workforce. This analysis will help the company plan ahead for these changes and suggest possible solutions to minimize the business impact on employees transitioning out of the workforce.
+Using a fictional company's employee data, this analysis helps the company understand the number of expected retiring employees and inform a plan for mentorship program solution. This analysis will help the company plan ahead for these changes and suggest possible solutions to minimize the business impact on employees transitioning out of the workforce.
 
 ## Results
-The Entity Relationship Diagram helps visualize the relationship between the disparate data sources. ![ERD](ERD/EmployeeDB.png) By joining datasets using SQL queries, I could build custom tables for each part of the analysis.
+The Entity Relationship Diagram helps visualize the relationship between the disparate data sources. ![ERD](ERD/EmployeeDB.png) 
 
-Bulleted list with 4 major points from the two analysis deliverables
 ### The Number of Retiring Employees by Title
-Total current employees. Employees elegible for retirement. What %?
+The first query combined the titles of employees who were born between Jan 1952-Dec 1955, as they were nearing retirement age. The output file needed the employee's number, first and last name, title, and employment dates.
+How many employees are expected to retire? The first query resulted in a list of 130k+ employees. [retirement_titles.csv](Data/retirement_titles.csv)
 
-The first table needed holds the titles of employees who were born between Jan 1952-Dec 1955. As employees moved up through the ranks and recieved promotions throughout the years, the data needed to be cleaned for distinct titles to eliminate duplicate employee records. 
+As employees moved up through the ranks and recieved promotions throughout the years, some employees had multiple titles and salaries. The data needed to be cleaned for distinct titles to eliminate duplicate employee records. 
 
-How many employees are expected to retire? - X -  link to file: retirement_titles.csv(Data/retirement_titles.csv)
- - due to promotions - some duplicates. using DISTINCT ON joins I was able to get the Unique titles - X - link to file: unique_titles.csv(Data/unique_titles.csv)
-Retiring titles X Retiring_titles.csv (Data/retiring_titles.csv) - what roles will the team need to focus on backfilling and which areas will feel the largest impact of the upcoming retirements
- - 25916	Senior Engineer
- - 24926	Senior Staff
- - 9285	Engineer
- - 7636	Staff
-- 3603	Technique Leader
-- 1090	Assistant Engineer
-- 2	Manager
+Using the DISTINCT ON joins query I was able to get the [Unique_titles.csv](Data/unique_titles.csv). This will only return the latest title for each employee. 74,258 employees fit this criteria. This is a huge number of potentital employees to backfill.
+
+The next query counts the number of roles by title, which could help HR and managers understand which roles will be most impacted by the retirees. [Retiring_titles.csv](Data/retiring_titles.csv). The company will want to prioritized Senior Enigneer and Senior Staff roles as these areas will feel the largest impact (70% of all retiring employees) of the upcoming retirements:
+ - 25,916	Senior Engineer
+ - 24,926	Senior Staff
+ - 9,285	Engineer
+ - 7,636	Staff
+ - 3,603	Technique Leader
+ - 1,090	Assistant Engineer
+ - 2	Manager
 
 ### Employees Eligible for the Mentorship Program
-Mentorship-eligibility - X of employees (Data/mentorship_eligibility.csv)
+The Mentorship-eligibility query joined on the primary employee number key, combined first name, last name, birth date, and employement dates, and titles into a new table based on birth date criteria in 1965. (Data/mentorship_eligibility.csv)
 
-how many employees are eligible?
+1,549 employees are eligible for the mentorship program
+
+[Code](Queries/Employee_Database_challenge.sql)
 
 ## Summary 
-The summary addresses the two questions:
-How many roles will need to be filled as the "silver tsunami" begins to make an impact? (XXXXX)
-Are there enough qualified, retirement-ready employees in the departments to mentor the next generation of Pewlett Hackard employees? (XXXXXX, no only X are eligble to partipcate in a mentorship program)
-two additional quieries or tables that may provide more insight
--look into a month - by month view to see which seasons, business quarters, etc. may feel the most impact
+The company will need to fill 74,258 roles. While there are some qualified, retirement-ready employees in the departments to mentor the next generation of Pewlett Hackard employees, it will not be enough.
 
-Hiring, Staffing, Plan to recruit more talent and promote existing. 
+The mentorship program as it is planned, is not enough to fill to the exodus of employees. The mentorship eligibility criteria could be expanded to be more inclusive. Other queries could help the HR and management teams recruiting talent from competitors with strong compensation opportunities. A deeper dive on compensation compared to industry averages could be useful. A query comparing mid level employees could also help inform promotions from within and set a plan for recruiting new entry-level talent.
+
